@@ -1,0 +1,47 @@
+:root {
+    --font-size: 14px;
+}
+
+h1 {
+    --font-size: 1.9rem;
+    --typography-spacing-vertical: 1.2rem;
+}
+
+h2 {
+    --font-size: 1.5rem;
+    --typography-spacing-vertical: 1rem;
+    font-weight: 400;
+}
+
+h3 {
+    --font-size: 1.2rem;
+}
+
+form {
+    margin-top: 3rem;
+}
+
+form .grid div {
+    margin-top: 1.5rem;
+}
+
+
+form label {
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    max-width: 960px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.error {
+    color: #f54848
+}
+
+.result {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid;
+}

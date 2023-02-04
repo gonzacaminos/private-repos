@@ -1,0 +1,68 @@
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Private Repos</title>
+        <meta name="description" content="A small tool to generate private repo urls based on personal access tokens.">
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+    </head>
+
+    <body>
+        <main class="container">
+            <h1>Private repos</h1>
+            <h2>A small tool to generate private repo urls based on personal access tokens.</h2>
+            <form action="" x-data="{
+                username: '', reponame: '', token:'', resultUrl: '', error: '',
+                setRepoURL(val){
+                    if(val.includes('https') && val.includes('.git')) {
+                        this.error = ''
+                        const reponame = val.split('https://github.com/')[1];
+                        this.username = reponame.split('/')[0];
+                        this.reponame = reponame;
+                        this.setURL();
+                    } else {
+                        this.error = 'That looks like an invalid repo url, make sure you\'re using https'
+                    }
+                    
+                }, 
+                setUsername(val) {
+                    this.username = val;
+                    this.setURL();
+                },
+                setToken(val) {
+                    this.token = val;
+                    this.setURL();
+                },
+                setURL(){
+                    if(this.username && this.token && this.reponame) {
+                        this.resultUrl = `https://${this.username}:${this.token}@github.com/${this.reponame}`;
+                    }
+                }
+                }">
+                <label for="repo_url">Repo Url (https only)</label>
+                <input type="text" name="repo_url" @keyup="setRepoURL($event.target.value)" required>
+                <div class="grid">
+                    <div>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" :value="username ? username : ''" @keyup="setUsername($event.target.value)" required>
+                    </div>
+                    <div>
+                        <label for="token">Personal Access Token</label>
+                        <input type="text" name="token" @keyup="setToken($event.target.value)"  required>
+                    </div>
+                  </div>
+                
+                <small x-text="error" class="error"></small>
+                <div class="result" x-show="resultUrl">
+                    <h3>Your private repo URL:</h3>
+                    <input type="text" name="repoPrivateUrl" :value="resultUrl" readonly>
+                </div>
+                
+            </form>
+        </main>
+        <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+
+    </body>
+</html>
