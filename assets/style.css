@@ -37,6 +37,7 @@ form label {
 }
 
 .error {
+    margin-top: 2rem;
     color: #f54848
 }
 
@@ -44,4 +45,9 @@ form label {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid;
+}
+
+footer {
+    margin-top: 5rem;
+    text-align: center;
 }
